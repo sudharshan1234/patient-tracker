@@ -1,0 +1,27 @@
+# Logs
+patient-tracker-front/logs
+patient-tracker-front/*.log
+patient-tracker-front/npm-debug.log*
+patient-tracker-front/yarn-debug.log*
+patient-tracker-front/yarn-error.log*
+patient-tracker-front/pnpm-debug.log*
+patient-tracker-front/lerna-debug.log*
+
+patient-tracker-front/node_modules
+patient-tracker-front/dist
+patient-tracker-front/dist-ssr
+patient-tracker-front/*.local
+
+patient-tracker-front/# Editor directories and files
+patient-tracker-front/.vscode/*
+patient-tracker-front/!.vscode/extensions.json
+patient-tracker-front/.idea
+patient-tracker-front/.DS_Store
+patient-tracker-front/*.suo
+patient-tracker-front/*.ntvs*
+patient-tracker-front/*.njsproj
+patient-tracker-front/*.sln
+patient-tracker-front/*.sw?
+
+# backend
+patient-tracker-back/node_modules
