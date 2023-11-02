@@ -3,13 +3,32 @@ import { action as loginAction } from './pages/Login';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { HomeLayout, Login } from './pages';
+import { HomeLayout, Login, Landing, Patients, ProfilePage } from './pages';
 import { store } from './store';
+import { SinglePatient } from './components';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <HomeLayout />,
+    children: [
+      {
+        index: true,
+        element: <Landing />,
+      },
+      {
+        path: 'manage-patient',
+        element: <ProfilePage />,
+      },
+      {
+        path: 'medical-history',
+        element: <Patients />,
+      },
+      {
+        path: 'medical-history/:id',
+        element: <SinglePatient />,
+      },
+    ]
   },
   {
     path: '/login',
