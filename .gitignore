@@ -25,3 +25,4 @@ patient-tracker-front/*.sw?
 
 # backend
 patient-tracker-back/node_modules
+patient-tracker-back/.env
