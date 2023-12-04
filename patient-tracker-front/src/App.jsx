@@ -4,12 +4,13 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ProtectedRoute } from './ProtectedRoute';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { HomeLayout, Login, Landing, Patients, ProfilePage, Register } from './pages';
+import { HomeLayout, Login, Landing, Patients, ProfilePage, Register, AppointmentsPage } from './pages';
 import { store } from './store';
 import { SinglePatient } from './components';
 import { loader as patientLoader } from './pages/Patients';
 import { loader as singlePatientLoader } from './components/SinglePatient';
 import { loader as singlePatientLoaderEdit } from './components/PatientRegister';
+import { loader as appointmentsLoader } from './pages/AppointmentsPage';
 
 
 const queryClient = new QueryClient({
@@ -65,6 +66,15 @@ const router = createBrowserRouter([
        </ProtectedRoute>
      ),
      loader: singlePatientLoader(queryClient)
+    },
+    {
+      path: 'appointments/',
+      element: (
+       <ProtectedRoute>
+         <AppointmentsPage />
+       </ProtectedRoute>
+     ),
+     loader: appointmentsLoader(queryClient)
     },
   ]
 },
