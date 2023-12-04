@@ -1,4 +1,4 @@
-const Appointment = require('../models/appointment'); // Adjust path as necessary
+const Appointment = require('../models/appointment');
 
 getAllAppointments = async (req, res) => {
   try {
@@ -31,7 +31,7 @@ getAppointmentsByDoctor = async (req, res) => {
    try {
      const { doctorId } = req.params;
      const appointmentsWithPatients = await Appointment.find({ doctor: doctorId })
-     .populate('patient', 'name dateOfBirth contact') // Adjust fields as per requirement
+     .populate('patient', 'name dateOfBirth contact')
      .exec();
 
 
