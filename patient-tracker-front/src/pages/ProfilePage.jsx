@@ -1,34 +1,56 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PatientRegister, ManageProfile } from '../components';
+import { PatientRegister } from '../components';
+import { toast } from 'react-toastify';
+import { customFetch } from '../utils';
+
 
 const ProfilePage = () => {
-  const navigate = useNavigate();
+ const navigate = useNavigate();
 
-  const handleRegistrationSubmit = (formData) => {
-    // Add logic to handle registration submission
-    console.log('Registering patient:', formData);
-    // Example:
-    // dispatch(registerPatient(formData));
-    // Redirect or show success message
-  };
 
-  const handleProfileUpdate = (profileData) => {
-    // Add logic to handle profile update submission
-    console.log('Updating profile:', profileData);
-    // Example:
-    // dispatch(updateUserProfile(profileData));
-    // Redirect or show success message
-  };
+ const handleRegistrationSubmit = async (formData) => {
+   // Add logic to handle registration submission
+   console.log('Registering patient:', formData);
+   if(formData._id){
+     try {
+       const response = await customFetch.put(`/patients/${formData._id}`, formData);
+       toast.success('Patient Edited Successfully');
+       return redirect('/medical-history');
+     } catch (error) {
+       const errorMessage =
+         error.message ||
+         'Something went wrong, please try again later';
+       toast.error(errorMessage);
+       console.log(error);
+       return null;
+     }
+   }
+   else{
+     try {
+       const response = await customFetch.post(`/patients/`, formData);
+       toast.success('Patient Created Successfully');
+       return redirect('/medical-history');
+     } catch (error) {
+       const errorMessage =
+         error.message ||
+         'Something went wrong, please try again later';
+       toast.error(errorMessage);
+       return null;
+     }
+   }
+  
+ };
 
-  return (
-    <section className='h-screen grid place-items-center'>
-      <div className='card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4'>
-        <PatientRegister onSubmit={handleRegistrationSubmit} />
-        <ManageProfile user={null} onSubmit={handleProfileUpdate} />
-      </div>
-    </section>
-  );
+
+ return (
+   <section className='h-screen grid place-items-center'>
+     <div className='card w-full p-8 bg-base-100 shadow-lg flex gap-y-4'>
+       <PatientRegister onSubmit={handleRegistrationSubmit} />
+     </div>
+   </section>
+ );
 };
+
 
 export default ProfilePage;

@@ -1,16 +1,32 @@
-const FormInput = ({ label, name, type, defaultValue, size }) => {
-    return (
-      <div className='form-control'>
-        <label htmlFor={name} className='label'>
-          <span className='label-text capitalize'>{label}</span>
-        </label>
+const FormInput = ({ label, name, type, value, defaultValue, size, onChange }) => {
+  // Check if onChange is provided
+  const isControlled = onChange !== undefined;
+ 
+ 
+  return (
+    <div className={`form-control ${size}`}>
+      <label htmlFor={name} className='label'>
+        <span className='label-text capitalize'>{label}</span>
+      </label>
+      {isControlled ? (
+        <input
+          type={type}
+          name={name}
+          value={value?value:''}
+          onChange={onChange}
+          className={`input input-bordered`}
+        />
+      ) : (
         <input
           type={type}
           name={name}
           defaultValue={defaultValue}
-          className={`input input-bordered ${size}`}
+          className={`input input-bordered`}
         />
-      </div>
-    );
-  };
-  export default FormInput;
+      )}
+    </div>
+  );
+ };
+ 
+ 
+ export default FormInput; 
