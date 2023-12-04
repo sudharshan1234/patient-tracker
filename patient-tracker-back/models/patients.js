@@ -40,12 +40,6 @@ const primaryCarePhysicianSchema = new mongoose.Schema({
 });
 
 
-const appointmentSchema = new mongoose.Schema({
-   date: String,
-   purpose: String,
-   attendingPhysician: String
-});
-
 
 const prescriptionSchema = new mongoose.Schema({
    name: String,
@@ -86,7 +80,6 @@ const patientSchema = new mongoose.Schema({
    medications: [medicationSchema],
    vaccinations: [vaccinationSchema],
    primaryCarePhysician: primaryCarePhysicianSchema,
-   appointments: [appointmentSchema],
    prescriptions: [prescriptionSchema],
    billing: billingSchema
 });

@@ -2,10 +2,16 @@ const mongoose = require('mongoose');
 
 
 const appointmentSchema = new mongoose.Schema({
-   patientId: mongoose.Schema.Types.ObjectId, // Reference to the Patient
+   patient: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Patient'
+    },
+    doctor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Doctor'
+    },
    date: String,
    purpose: String,
-   attendingPhysician: String
 });
 
 
