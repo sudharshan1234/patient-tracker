@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { PatientRegister } from '../components';
 import { toast } from 'react-toastify';
 import { customFetch } from '../utils';
-
+import { redirect } from 'react-router-dom';
+import { store } from '../store';
 
 const ProfilePage = () => {
  const navigate = useNavigate();
@@ -28,7 +29,9 @@ const ProfilePage = () => {
    }
    else{
      try {
-       const response = await customFetch.post(`/patients/`, formData);
+      const state = store.getState();
+      const doctorId = state.userState.user._id;
+       const response = await customFetch.post(`/doctors/patients/${doctorId}`, formData);
        toast.success('Patient Created Successfully');
        return redirect('/medical-history');
      } catch (error) {

@@ -1,6 +1,6 @@
 import { FormInput, SubmitBtn } from '../components';
 import { Form, Link, redirect } from 'react-router-dom';
-import { customFetch } from '../utils';
+import { customFetch, customFetchNoToken } from '../utils';
 import { toast } from 'react-toastify';
 
 
@@ -10,7 +10,7 @@ export const action = async ({ request }) => {
 
 
  try {
-   const response = await customFetch.post('/doctors/register', data);
+   const response = await customFetchNoToken.post('/doctors/register', data);
    toast.success('account created successfully');
    return redirect('/login');
  } catch (error) {
