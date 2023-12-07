@@ -7,37 +7,37 @@ import { AppointmentsList } from '../components';
 
 
 const allAppointmentsQuery = () => {
-   const state = store.getState();
-   const doctorId = state.userState.user._id;
-    const url = `/appointments/${doctorId}`;
-    return {
-     queryKey: [
-       'appointments'
-     ],
-     queryFn: () =>
-       customFetch(url),
-   };
- };
-  export const loader =
-   (queryClient) =>
-   async ({ request }) => {
-    
-     const response = await queryClient.ensureQueryData(
-       allAppointmentsQuery()
-     );
-     const appointments  = response.data;
-     return appointments;
-   };
-
-
+  const state = store.getState();
+  const doctorId = state.userState.user._id;
+   const url = `/appointments/doctor/${doctorId}`;
+   return {
+    queryKey: [
+      'appointments'
+    ],
+    queryFn: () =>
+      customFetch(url),
+  };
+};
+ export const loader =
+  (queryClient) =>
+  async ({ request }) => {
   
-const AppointmentsPage = () => {
-   const appointmentsData = useLoaderData();
-   return (
-       <div>
-         <AppointmentsList appointments={appointmentsData} />
-       </div>
-     );
+    const response = await queryClient.ensureQueryData(
+      allAppointmentsQuery()
+    );
+    const appointments  = response.data;
+    return appointments;
+  };
+
+
+
+ const AppointmentsPage = () => {
+  const appointmentsData = useLoaderData();
+  return (
+      <div>
+        <AppointmentsList appointments={appointmentsData} />
+      </div>
+    );
 
 
 }

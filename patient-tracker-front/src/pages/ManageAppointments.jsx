@@ -1,18 +1,18 @@
 import React from 'react';
-import { PatientRegister } from '../components';
+import { AppointmentRegister } from '../components';
 import { toast } from 'react-toastify';
 import { customFetch } from '../utils';
+import { redirect } from 'react-router-dom';
 
-
-const ProfilePage = () => {
+const ManageAppointment = () => {
 
 const handleRegistrationSubmit = async (formData) => {
-  // Add logic to handle registration submission
+  // Add logic to handle registration submission  
   if(formData._id){
     try {
-      const response = await customFetch.put(`/patients/${formData._id}`, formData);
-      toast.success('Patient Edited Successfully');
-      return redirect('/medical-history');
+      const response = await customFetch.put(`/appointments/${formData._id}`, formData);
+      toast.success('Appointment Edited Successfully');
+      return redirect('/appointments');
     } catch (error) {
       const errorMessage =
         error.message ||
@@ -23,9 +23,9 @@ const handleRegistrationSubmit = async (formData) => {
   }
   else{
     try {
-      const response = await customFetch.post(`/patients/`, formData);
-      toast.success('Patient Created Successfully');
-      return redirect('/medical-history');
+      const response = await customFetch.post(`/appointments/`, formData);
+      toast.success('Appointment Created Successfully');
+      return redirect('/appointments');
     } catch (error) {
       const errorMessage =
         error.message ||
@@ -37,13 +37,13 @@ const handleRegistrationSubmit = async (formData) => {
  };
 
 return (
-  <section className='h-screen grid place-items-center'>
+  
+  <section className='h-screen'>
     <div className='card w-full p-8 bg-base-100 shadow-lg flex gap-y-4'>
-      <PatientRegister onSubmit={handleRegistrationSubmit} />
+      <AppointmentRegister onSubmit={handleRegistrationSubmit} />
     </div>
   </section>
 );
 };
 
-
-export default ProfilePage;
+export default ManageAppointment;
