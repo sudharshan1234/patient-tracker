@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { PatientRegister } from '../components';
 import { toast } from 'react-toastify';
 import { customFetch } from '../utils';
@@ -7,8 +6,6 @@ import { redirect } from 'react-router-dom';
 import { store } from '../store';
 
 const ProfilePage = () => {
- const navigate = useNavigate();
-
 
  const handleRegistrationSubmit = async (formData) => {
    // Add logic to handle registration submission
@@ -45,14 +42,13 @@ const ProfilePage = () => {
   
  };
 
-
- return (
-   <section className='h-screen grid place-items-center'>
-     <div className='card w-full p-8 bg-base-100 shadow-lg flex gap-y-4'>
-       <PatientRegister onSubmit={handleRegistrationSubmit} />
-     </div>
-   </section>
- );
+return (
+  <section className='h-screen grid place-items-center'>
+    <div className='card w-full p-8 bg-base-100 shadow-lg flex gap-y-4'>
+      <PatientRegister onSubmit={handleRegistrationSubmit} />
+    </div>
+  </section>
+);
 };
 
 

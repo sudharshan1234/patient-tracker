@@ -21,7 +21,6 @@ const userSlice = createSlice({
    loginUser: (state, action) => {
      const user = { ...action.payload.doctor, token: action.payload.token };
      state.user = user;
-     console.log(state);
      localStorage.setItem('user', JSON.stringify(user));
    },
    logoutUser: (state) => {
@@ -37,6 +36,3 @@ export const { loginUser, logoutUser } = userSlice.actions;
 
 
 export default userSlice.reducer;
-
-
-

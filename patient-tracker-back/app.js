@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const patientRoutes = require('./routes/patientRoutes')
 const appointmentRoutes = require('./routes/appointmentRoutes');
 const doctorRoutes = require('./routes/doctorRoutes');
-
+const { verifyToken } = require('./jwt-middleware');
 
 const app = express();
 app.use(bodyParser.json());
@@ -18,10 +18,10 @@ mongoose.connect(`mongodb+srv://sudharshan:${process.env.MONGO_PWD}@patient-trac
 mongoose.connection.on('connected', () => console.log('Connected to MongoDB'));
 mongoose.connection.on('error', (err) => console.log('Error connecting to MongoDB:', err));
 
-
+app.use('/api/doctors', doctorRoutes);
+app.use(verifyToken)
 app.use('/api/patients', patientRoutes);
 app.use('/api/appointments', appointmentRoutes);
-app.use('/api/doctors', doctorRoutes);
 
 
 const PORT = process.env.PORT || 3000;

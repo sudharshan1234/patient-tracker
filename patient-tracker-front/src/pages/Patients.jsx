@@ -46,7 +46,6 @@ export const loader =
 
 const Patients = () => {
  const patientsData = useLoaderData();
- console.log(patientsData);
  return (
    <div>
      <PatientList patients={patientsData} />

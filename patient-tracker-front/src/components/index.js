@@ -8,3 +8,4 @@ export { default as PatientRegister } from './PatientRegister';
 export { default as PatientList } from './PatientList';
 export { default as SinglePatient } from './SinglePatient';
 export { default as AppointmentsList } from './AppointmentsList';
+export { default as AppointmentRegister } from './AppointmentRegister';
