@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const productionUrl = ' http://localhost:3000/api';
+const productionUrl = ' https://patient-tracker-api.onrender.com/api';
 
 export const customFetch = axios.create({
   baseURL: productionUrl,
