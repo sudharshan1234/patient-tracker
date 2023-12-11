@@ -10,7 +10,7 @@ const { verifyToken } = require('./jwt-middleware');
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors({ origin: 'http://localhost:5173' })); // Allow only http://localhost:5173
+app.use(cors({ origin: 'https://patient-tracker.netlify.app' })); // Allow only http://localhost:5173
 
 
 // MongoDB Connection
