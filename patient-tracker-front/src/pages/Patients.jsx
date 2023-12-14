@@ -17,7 +17,7 @@ const allPatientsQuery = (queryParams) => {
 
  return {
    queryKey: [
-     'patients'
+     'patients', doctorId
    ],
    queryFn: () =>
      customFetch(url),
@@ -48,7 +48,7 @@ const Patients = () => {
  const patientsData = useLoaderData();
  return (
    <div>
-     <PatientList patients={patientsData} />
+     <PatientList initialPatients={patientsData} />
    </div>
  );
 };

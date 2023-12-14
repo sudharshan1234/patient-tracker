@@ -4,7 +4,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ProtectedRoute } from './ProtectedRoute';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { HomeLayout, Login, Landing, Patients, ProfilePage, Register, AppointmentsPage, ManageAppointments } from './pages';
+import { HomeLayout, Login, Landing, Patients, ProfilePage, Register, AppointmentsPage, ManageAppointments, HealthMetrics } from './pages';
 import { store } from './store';
 import { SinglePatient } from './components';
 import { loader as patientLoader } from './pages/Patients';
@@ -12,6 +12,7 @@ import { loader as singlePatientLoader } from './components/SinglePatient';
 import { loader as singlePatientLoaderEdit } from './components/PatientRegister';
 import { loader as appointmentsLoader } from './pages/AppointmentsPage';
 import {loader as singleAppointmentEditLoader} from './components/AppointmentRegister'
+import {loader as healthMetricsLoader} from './pages/HealthMetrics'
 
 const queryClient = new QueryClient({
 defaultOptions: {
@@ -46,10 +47,6 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     loader: singlePatientLoaderEdit(queryClient)
-
-
-
-
    },
    {
      path: 'medical-history',
@@ -86,6 +83,15 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     loader: singleAppointmentEditLoader(queryClient)
+   },
+   {
+     path: 'health-metrics/:id',
+     element: (
+      <ProtectedRoute>
+        <HealthMetrics />
+      </ProtectedRoute>
+    ),
+    loader: healthMetricsLoader(queryClient)
    },
   
  ]

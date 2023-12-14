@@ -33,6 +33,9 @@ const SinglePatient = () => {
  const handleEditPatient = (id) => {
    navigate(`/manage-patient/${id}`);
  };
+ const handlePatientMetrics = (id) => {
+   navigate(`/health-metrics/${id}`);
+ };
  const patient = useLoaderData();
 
 
@@ -41,6 +44,7 @@ const SinglePatient = () => {
    <div className='flex gap=5 items-center justify-between'>
    <button className="mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleGoBack}> Go Back</button>
    <button className="mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={()=>{handleEditPatient(patient._id)}}> Edit Patient Details</button>
+   <button className="mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={()=>{handlePatientMetrics(patient._id)}}> View Patient Health Metrics</button>
    </div>
      <h2 className="text-2xl font-bold mb-4">Patient Details</h2>
      <div>

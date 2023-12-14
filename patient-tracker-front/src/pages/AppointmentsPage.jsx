@@ -12,7 +12,7 @@ const allAppointmentsQuery = () => {
    const url = `/appointments/doctor/${doctorId}`;
    return {
     queryKey: [
-      'appointments'
+      'appointments', doctorId
     ],
     queryFn: () =>
       customFetch(url),
