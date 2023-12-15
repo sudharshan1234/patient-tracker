@@ -4,12 +4,13 @@ const FormInput = ({ label, name, type, value, defaultValue, size, onChange }) =
  
  
   return (
-    <div className={`form-control ${size}`}>
+    <div className={`form-control ${size?size:""}`}>
       <label htmlFor={name} className='label'>
         <span className='label-text capitalize'>{label}</span>
       </label>
       {isControlled ? (
         <input
+          id={name}
           type={type}
           name={name}
           value={value?value:''}
@@ -18,6 +19,7 @@ const FormInput = ({ label, name, type, value, defaultValue, size, onChange }) =
         />
       ) : (
         <input
+          id={name}
           type={type}
           name={name}
           defaultValue={defaultValue}
